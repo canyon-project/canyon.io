@@ -1,6 +1,11 @@
 module.exports = {
   docs: [
     {
+      type: 'category',
+      label: 'Canyon',
+      items: ['canyon/get-started'],
+    },
+    {
       id: "introduction",
       type: "doc",
     },{
