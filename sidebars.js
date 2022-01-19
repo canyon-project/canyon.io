@@ -3,16 +3,15 @@ module.exports = {
     {
       type: 'category',
       label: 'Canyon',
-      items: ['canyon/get-started'],
+      items: ['canyon/getting_started'],
     },
     {
-      id: "introduction",
-      type: "doc",
-    },{
-    type: 'category',
-    label: '开始',
-    items: ['get-started/pluginstall','get-started/storage','get-started/platform','get-started/installation'],
-  },
+      type: 'category',
+      label: '介绍',
+      items: ['introduction/overview'],
+    },
+
+
     {
       type: 'category',
       label: '常见问题',

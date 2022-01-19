@@ -39,29 +39,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         },
         items: [
           {
-            label: "开始",
-            position: "left",
-            // ['get-started/process-diagram','get-started/pluginstall','get-started/storage','get-started/platform'],
-            items: [
-              {
-                label: "流程图示",
-                to: "/docs/get-started/process-diagram/",
-              },
-              {
-                label: "代码插桩",
-                to: "/docs/get-started/pluginstall/",
-              },
-              {
-                label: "覆盖率上报",
-                to: "/docs/get-started/storage/",
-              },
-              {
-                label: "覆盖率平台",
-                to: "/docs/get-started/platform/",
-              }
-            ],
-          },
-          {
             label: "文档",
             to: "/docs/introduction/",
             position: "left",
