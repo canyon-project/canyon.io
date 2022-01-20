@@ -40,7 +40,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         items: [
           {
             label: "文档",
-            to: "/docs/introduction/",
+            to: "/docs/canyon/getting_started",
             position: "left",
           },
           {
