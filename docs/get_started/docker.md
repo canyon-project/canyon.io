@@ -1,8 +1,4 @@
----
-title: 安装
----
-
-## 使用 Docker
+# 使用 Docker
 
 Canyon 的 Docker 镜像放在 [`Docker Hub`](https://hub.docker.com/r/zhangtao25/canyon) 上。
 
@@ -10,7 +6,7 @@ Canyon 的 Docker 镜像放在 [`Docker Hub`](https://hub.docker.com/r/zhangtao2
 
 要提供您自己的配置，有几个选项。这里有两个例子。
 
-### 卷(volumes) & 绑定挂载
+## 卷(volumes) & 绑定挂载
 
 启动时把主机的 `application.yml` 挂载到容器内
 
@@ -21,7 +17,7 @@ docker run \
     zhangtao25/canyon
 ```
 
-### 自定义镜像
+## 自定义镜像
 
 为此，使用 Canyon 配置创建一个新目录， `Dockerfile` 如下所示：
 

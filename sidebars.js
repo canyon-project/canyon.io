@@ -1,26 +1,21 @@
 module.exports = {
   docs: [
+      // 介绍
+    {
+      type: 'doc',
+      id:'introduction'
+    },
+      // 概念
     {
       type: 'category',
-      label: 'Canyon',
-      items: ['canyon/getting_started'],
+      label: '概念',
+      items: ['concepts/coverage','concepts/architecture'],
     },
+      // 开始
     {
       type: 'category',
-      label: '介绍',
-      items: ['introduction/overview'],
+      label: '开始',
+      items: ['get_started/nodejs','get_started/docker','get_started/first_coverage'],
     },
-
-
-    {
-      type: 'category',
-      label: '常见问题',
-      items: ['coverage-file-not-compl'],
-    },
-    {
-      type: 'category',
-      label: '参考',
-      items: ['reference/pullCode'],
-    },
-    ],
+  ],
 };

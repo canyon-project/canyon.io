@@ -40,7 +40,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         items: [
           {
             label: "文档",
-            to: "/docs/canyon/getting_started",
+            to: "/docs/introduction",
             position: "left",
           },
           {
@@ -104,8 +104,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       },
       announcementBar: {
         id: 'support_us',
-        content:
-            '如果需要人工服务',
+        content: '<div>如果你喜欢 QuestDB，<a href="https://github.com/canyon999/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
         backgroundColor: '#fafbfc',
         textColor: '#091E42',
         isCloseable: false,
