@@ -104,7 +104,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       },
       announcementBar: {
         id: 'support_us',
-        content: '<div>如果你喜欢 QuestDB，<a href="https://github.com/canyon999/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
+        content: '<div>如果你喜欢 Canyon，<a href="https://github.com/canyon999/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
         backgroundColor: '#fafbfc',
         textColor: '#091E42',
         isCloseable: false,
