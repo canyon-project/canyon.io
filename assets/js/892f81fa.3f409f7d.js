@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcanyon_io=self.webpackChunkcanyon_io||[]).push([[697],{623:function(o){o.exports=JSON.parse('{"permalink":"/canyon.io/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
