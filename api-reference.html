@@ -6,6 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
+    <style>
+        /*img[alt*="Workflow logo"]{*/
+        /*    width: 50px;*/
+        /*    text-align: center;*/
+        /*    !*margin-left: 100px;*!*/
+        /*}*/
+        html,body{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
     <title>canyon</title>
 </head>
 <body>
@@ -18,18 +29,7 @@
         "paths": {
             "/vi/health": {
                 "get": {
-                    "operationId": "健康检查123",
-                    "parameters": [],
-                    "responses": {
-                        "200": {
-                            "description": ""
-                        }
-                    }
-                }
-            },
-            "/swagger-spec": {
-                "get": {
-                    "operationId": "AppController_swaggerSpec",
+                    "operationId": "Health Examination",
                     "parameters": [],
                     "responses": {
                         "200": {
@@ -37,110 +37,171 @@
                         }
                     },
                     "tags": [
-                        "app"
+                        "App"
                     ]
                 }
             },
-            "/auth/login": {
-                "post": {
-                    "operationId": "AppController_login",
+            "/api/user": {
+                "get": {
+                    "operationId": "Current User Info",
                     "parameters": [],
-                    "requestBody": {
-                        "required": true,
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AuthLoginDto"
-                                }
-                            }
-                        }
-                    },
+                    // "requestBody": {
+                    //     "required": true,
+                    //     "content": {
+                    //         "application/json": {
+                    //             "schema": {
+                    //                 "type": "object",
+                    //                 "properties": {
+                    //                     "canyonId": {
+                    //                         "type": "string",
+                    //                         "description": "canyon Id"
+                    //                     },
+                    //                     "password": {
+                    //                         "type": "string",
+                    //                         "description": "password",
+                    //                         "example":"1111"
+                    //                     }
+                    //                 },
+                    //                 "required": [
+                    //                     "canyonId",
+                    //                     "password"
+                    //                 ]
+                    //             }
+                    //         }
+                    //     }
+                    // },
                     "responses": {
-                        "201": {
-                            "description": ""
+                        "200":{
+                            "description": "Returns the currently authenticated user.",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type":"object",
+                                        "properties":{
+                                            "id": {
+                                                "type": "number",
+                                                "de":"The ID of this user",
+                                                "example": 1
+                                            },
+                                            "username": {
+                                                "type": "string",
+                                                "description": "The username of this user",
+                                                "example":"octocat"
+                                            },
+                                            "nickname": {
+                                                "type": "string",
+                                                "description": "The nickname of this user",
+                                                "example":"octocat"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                         }
+
                     },
                     "tags": [
-                        "auth"
+                        "User"
                     ]
                 }
             },
-            "/profile": {
-                "get": {
-                    "operationId": "AppController_getProfile",
-                    "parameters": [],
-                    "responses": {
-                        "200": {
-                            "description": ""
-                        }
-                    }
-                }
-            },
-            "/user": {
+            "/api/coverage/client": {
                 "post": {
-                    "operationId": "UserController_create",
+                    "operationId": "Reporting coverage.",
                     "parameters": [],
-                    "requestBody": {
-                        "required": true,
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CreateUserDto"
-                                }
-                            }
-                        }
-                    },
+                    // "requestBody": {
+                    //     "required": true,
+                    //     "content": {
+                    //         "application/json": {
+                    //             "schema": {
+                    //                 "type": "object",
+                    //                 "properties": {
+                    //                     "canyonId": {
+                    //                         "type": "string",
+                    //                         "description": "canyon Id"
+                    //                     },
+                    //                     "password": {
+                    //                         "type": "string",
+                    //                         "description": "password",
+                    //                         "example":"1111"
+                    //                     }
+                    //                 },
+                    //                 "required": [
+                    //                     "canyonId",
+                    //                     "password"
+                    //                 ]
+                    //             }
+                    //         }
+                    //     }
+                    // },
                     "responses": {
-                        "201": {
-                            "description": ""
+                        "200":{
+                            "description": "Coverage reported successfully",
+                            "content": {
+                                "application/json":{
+                                    "schema":{
+                                        "type":"object",
+                                        "properties":{
+                                            "coverageRepositoryInsertResult": {
+                                                "type": "object",
+                                                "example": {
+                                                    "identifiers": [
+                                                        {
+                                                            "id": 4
+                                                        }
+                                                    ],
+                                                    "generatedMaps": [
+                                                        {
+                                                            "id": 4,
+                                                            "createdAt": "2022-05-14T00:56:14.208Z",
+                                                            "updatedAt": "2022-05-14T00:56:14.208Z",
+                                                            "commitSha": "18df9db74a09cee5d32c1f2ecaffb9a47e5775af",
+                                                            "repoId": 1,
+                                                            "instrumentCwd": "/Users/zhangtao/Desktop/canyon-project/test/canyon-platform",
+                                                            "reporter": 1
+                                                        }
+                                                    ],
+                                                    "raw": {
+                                                        "fieldCount": 0,
+                                                        "affectedRows": 1,
+                                                        "insertId": 4,
+                                                        "info": "",
+                                                        "serverStatus": 2,
+                                                        "warningStatus": 0
+                                                    }
+                                                }
+                                            },
+                                            "coverageModelInsertManyResult": {
+                                                "type": "object",
+                                                "example":{
+                                                    "coverage":{},
+                                                    "_id":"627f9019830a2ae910959786"
+                                                }
+                                            },
+                                        }
+                                    }
+                                }
+                            },
                         }
-                    }
+
+                    },
+                    "tags": [
+                        "Coverage"
+                    ]
                 }
             },
-            "/user/myInfo": {
-                "get": {
-                    "operationId": "UserController_myInfo",
-                    "parameters": [],
-                    "responses": {
-                        "200": {
-                            "description": ""
-                        }
-                    }
-                }
-            },
-            "/coverage/client": {
-                "post": {
-                    "operationId": "上报覆盖率",
-                    "parameters": [],
-                    "requestBody": {
-                        "required": true,
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CoverageClientDto"
-                                }
-                            }
-                        }
-                    },
-                    "responses": {
-                        "201": {
-                            "description": ""
-                        }
-                    }
-                }
-            }
         },
         "info": {
-            "title": "CANYON接口文档",
-            "description": "这是CANYON接口文档1",
+            "title": "Canyon API",
+            "description": "Canyon provides a comprehensive remote API for interacting with the Canyon server. This section of the documents provides instructions for authenticating and using the remote API.",
             "version": "1.110",
-            "contact": {}
+            "contact": {},
+            "x-logo": {
+                "url": "https://canyon-project.github.io/canyon.io/img/api-logo.png",
+                "altText": "Workflow logo"
+            },
         },
         "tags": [
-            {
-                "name": "cats",
-                "description": ""
-            }
         ],
         "servers": [],
         "components": {
@@ -153,6 +214,20 @@
                 }
             },
             "schemas": {
+                "CurrentUserInfoExample": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "example": 905019230
+                        },
+                        "password": {
+                            "type": "string",
+                            "description": "password",
+                            "example":"asfasfasfa"
+                        }
+                    }
+                },
                 "AuthLoginDto": {
                     "type": "object",
                     "properties": {
@@ -162,7 +237,8 @@
                         },
                         "password": {
                             "type": "string",
-                            "description": "password"
+                            "description": "password",
+                            "example":"asfasfasfa"
                         }
                     },
                     "required": [
@@ -254,6 +330,11 @@
     }
 
     Redoc.init(swJson, {
+        logo: {
+            url: 'https://redocly.github.io/redoc/petstore-logo.png',
+            backgroundColor: '#F0F0F0',
+            altText: 'PetStore logo'
+        },
     }, document.getElementById('redoc-container'))
 </script>
 </html>
