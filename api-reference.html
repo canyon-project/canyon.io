@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
+    <title>canyon</title>
+</head>
+<body>
+<div id="redoc-container">
+</div>
+</body>
+<script>
+    const swJson = {
+        "openapi": "3.0.0",
+        "paths": {
+            "/vi/health": {
+                "get": {
+                    "operationId": "健康检查123",
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": ""
+                        }
+                    }
+                }
+            },
+            "/swagger-spec": {
+                "get": {
+                    "operationId": "AppController_swaggerSpec",
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": ""
+                        }
+                    },
+                    "tags": [
+                        "app"
+                    ]
+                }
+            },
+            "/auth/login": {
+                "post": {
+                    "operationId": "AppController_login",
+                    "parameters": [],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthLoginDto"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": ""
+                        }
+                    },
+                    "tags": [
+                        "auth"
+                    ]
+                }
+            },
+            "/profile": {
+                "get": {
+                    "operationId": "AppController_getProfile",
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": ""
+                        }
+                    }
+                }
+            },
+            "/user": {
+                "post": {
+                    "operationId": "UserController_create",
+                    "parameters": [],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateUserDto"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": ""
+                        }
+                    }
+                }
+            },
+            "/user/myInfo": {
+                "get": {
+                    "operationId": "UserController_myInfo",
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": ""
+                        }
+                    }
+                }
+            },
+            "/coverage/client": {
+                "post": {
+                    "operationId": "上报覆盖率",
+                    "parameters": [],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CoverageClientDto"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": ""
+                        }
+                    }
+                }
+            }
+        },
+        "info": {
+            "title": "CANYON接口文档",
+            "description": "这是CANYON接口文档1",
+            "version": "1.110",
+            "contact": {}
+        },
+        "tags": [
+            {
+                "name": "cats",
+                "description": ""
+            }
+        ],
+        "servers": [],
+        "components": {
+            "securitySchemes": {
+                "access-token": {
+                    "type": "http",
+                    "scheme": "bearer",
+                    "bearerFormat": "JWT",
+                    "name": "Token"
+                }
+            },
+            "schemas": {
+                "AuthLoginDto": {
+                    "type": "object",
+                    "properties": {
+                        "canyonId": {
+                            "type": "string",
+                            "description": "canyon Id"
+                        },
+                        "password": {
+                            "type": "string",
+                            "description": "password"
+                        }
+                    },
+                    "required": [
+                        "canyonId",
+                        "password"
+                    ]
+                },
+                "CreateUserDto": {
+                    "type": "object",
+                    "properties": {}
+                },
+                "CoverageClientDto": {
+                    "type": "object",
+                    "properties": {
+                        "projectName": {
+                            "type": "string",
+                            "description": "项目名称"
+                        },
+                        "gitCommitHash": {
+                            "type": "string",
+                            "description": "commit hash"
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "path"
+                        },
+                        "coverage": {
+                            "type": "string",
+                            "description": "coverage"
+                        }
+                    },
+                    "required": [
+                        "projectName",
+                        "gitCommitHash",
+                        "path",
+                        "coverage"
+                    ]
+                },
+                "GetManyGitWarehouseResponseDto": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/GitWarehouse"
+                            }
+                        },
+                        "count": {
+                            "type": "number"
+                        },
+                        "total": {
+                            "type": "number"
+                        },
+                        "page": {
+                            "type": "number"
+                        },
+                        "pageCount": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "data",
+                        "count",
+                        "total",
+                        "page",
+                        "pageCount"
+                    ]
+                },
+                "GitWarehouse": {
+                    "type": "object",
+                    "properties": {}
+                },
+                "CreateManyGitWarehouseDto": {
+                    "type": "object",
+                    "properties": {
+                        "bulk": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/GitWarehouse"
+                            }
+                        }
+                    },
+                    "required": [
+                        "bulk"
+                    ]
+                }
+            }
+        }
+    }
+
+    Redoc.init(swJson, {
+    }, document.getElementById('redoc-container'))
+</script>
+</html>
