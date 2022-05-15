@@ -87,7 +87,7 @@ const TRANSLATE_URL = "https://crowdin.com/project/pnpm";
             items: [
               {
                 label: 'User Showcase',
-                href: 'https://github.com/canyon-project/canyon.io/users',
+                href: 'https://canyon-project.github.io/canyon.io/users',
               }
             ],
           },
