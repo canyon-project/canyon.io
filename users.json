@@ -1,0 +1,16 @@
+[
+  {
+    "caption": "Secure Code Warrior",
+    "image": "https://media.securecodewarrior.com/images/current_logo_v.png",
+    "infoLink": "https://securecodewarrior.com/",
+    "pinned": false,
+    "width": 200
+  },
+  {
+    "caption": "art solution",
+    "image": "https://artsolution.de/wp-content/uploads/2020/10/logo.jpg",
+    "infoLink": "https://artsolution.de/",
+    "pinned": false,
+    "width": 250
+  }
+]

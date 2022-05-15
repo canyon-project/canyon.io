@@ -1,6 +1,11 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const GITHUB_URL = 'https://github.com/pnpm/pnpm';
+const GITHUB_SPONSOR_URL = 'https://github.com/sponsors/pnpm';
+const SPONSOR_URL = 'https://opencollective.com/pnpm';
+const TRANSLATE_URL = "https://crowdin.com/project/pnpm";
+
 (module.exports = {
   title: 'Canyon',
   tagline: '前端代码覆盖率统计方案',
@@ -11,7 +16,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   favicon: 'img/logo.png',
   organizationName: 'canyon',
   projectName: 'canyon',
-
+  "customFields": {
+    "users": require('./users.json'),
+    "repoUrl": GITHUB_URL,
+    "translationRecruitingLink": TRANSLATE_URL,
+  },
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -74,24 +83,20 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            title: '相关',
+            title: 'Community',
             items: [
               {
-                label: '前端覆盖率平台',
-                href: 'http://canyon.com',
-              },
-              {
-                label: 'Istanbul',
-                href: 'https://istanbul.js.org/',
+                label: 'User Showcase',
+                href: 'https://github.com/canyon-project/canyon.io/users',
               }
             ],
           },
           {
-            title: '更多',
+            title: 'Contributing',
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/canyon999/babel-plugin-canyon',
+                href: 'https://github.com/canyon-project/canyon',
               },
             ],
           },
