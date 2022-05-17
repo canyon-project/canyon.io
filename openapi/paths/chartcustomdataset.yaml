@@ -1,0 +1,29 @@
+post:
+  tags:
+    - 自定义图表
+  summary: 获取自定义图表dataset
+  description: |
+    操作说明 **Markdown**.
+  operationId: operationId
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          title: Scalars
+          properties:
+            configId:
+              description: 用户图表配置的Id
+              type:
+              - string
+              examples:
+              - 627dadbf89337b004b8cdda5
+    description: requestBody description
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/chartcustomdataset.yaml
