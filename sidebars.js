@@ -43,7 +43,7 @@ module.exports = {
         {
           type: 'link',
           label: 'API Reference', // 链接标签
-          href: 'https://facebook.com', // 外部 URL
+          href: 'https://canyon-project.github.io/canyon.io/api-reference', // 外部 URL
         },],
     },
   ],

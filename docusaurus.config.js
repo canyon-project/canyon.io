@@ -57,14 +57,9 @@ const TRANSLATE_URL = "https://crowdin.com/project/pnpm";
             to: "/docs/CHANGELOG",
             position: "left",
           },
-          {
-            label: "API",
-            href: 'http://.com/redoc/',
-            position: "left",
-          },
 
           {
-            href: 'https://github.com/canyon999/babel-plugin-canyon',
+            href: 'https://github.com/canyon-project/canyon',
             label: 'GitHub',
             position: 'right',
           },
@@ -109,7 +104,7 @@ const TRANSLATE_URL = "https://crowdin.com/project/pnpm";
       },
       announcementBar: {
         id: 'support_us',
-        content: '<div>如果你喜欢 Canyon，<a href="https://github.com/canyon999/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
+        content: '<div>如果你喜欢 Canyon，<a href="https://github.com/canyon-project/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
         backgroundColor: '#fafbfc',
         textColor: '#091E42',
         isCloseable: false,

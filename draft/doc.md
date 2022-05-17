@@ -101,7 +101,7 @@ docker run -p 8080:8080 my-canyon
 [为您的平台下载最新版本](http://canyon.com/#/user)的 Canyon：
 
 ```shell
-git clone https://github.com/canyon999/canyon.git
+git clone https://github.com/canyon-project/canyon.git
 ```
 
 在启动 Prometheus 之前，让我们对其进行配置。
