@@ -8,9 +8,9 @@ git clone https://github.com/canyon-project/canyon.git
 
 在启动 Canyon 之前，让我们对其进行配置。
 
-## 配置数据库连接
+## 配置
 
-修改 conf/app.yml 文件：
+修改 conf/application.yml 文件：
 
 ```yaml
 datasource:
@@ -28,7 +28,23 @@ datasource:
     username: root
     password: root
     database: canyon
+
+gitlab:
+  application:
+    clientId: clientId
+    clientSecret: clientSecret
+    redirectUri: redirectUri
+    uri: uri
+
+
 ```
+
+
+:::tip
+
+本应用采用的是gitlab oauth2.0登陆，详细请查看 [Configure GitLab as an OAuth 2.0 authentication identity provider](https://docs.gitlab.com/ee/integration/oauth_provider.html)
+
+:::
 
 ## 启动Canyon
 

@@ -77,17 +77,17 @@ const TRANSLATE_URL = "https://crowdin.com/project/pnpm";
               },
             ],
           },
+          // {
+          //   title: 'Community',
+          //   items: [
+          //     {
+          //       label: 'User Showcase',
+          //       href: 'https://canyon-project.github.io/canyon.io/users',
+          //     }
+          //   ],
+          // },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'User Showcase',
-                href: 'https://canyon-project.github.io/canyon.io/users',
-              }
-            ],
-          },
-          {
-            title: 'Contributing',
+            title: '贡献',
             items: [
               {
                 label: 'GitHub',

@@ -5,25 +5,25 @@ module.exports = {
       type: 'doc',
       id:'introduction'
     },
-    {
-      type: 'category',
-      label: 'Installation',
-      items: [
-        {
-          type: 'category',
-          label: 'Server',
-          items: [
-            {
-              type: 'category',
-              label: 'Provider',
-              items: [
-                  'installation/server/provider/gitlab'
-              ],
-            }
-          ],
-        },
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'Installation',
+    //   items: [
+    //     {
+    //       type: 'category',
+    //       label: 'Server',
+    //       items: [
+    //         {
+    //           type: 'category',
+    //           label: 'Provider',
+    //           items: [
+    //               'installation/server/provider/gitlab'
+    //           ],
+    //         }
+    //       ],
+    //     },
+    //   ],
+    // },
       // 概念
     {
       type: 'category',
@@ -37,14 +37,18 @@ module.exports = {
       items: ['get_started/nodejs','get_started/docker','get_started/first_coverage'],
     },
     {
-      type: 'category',
-      label: 'Reference',
-      items: [    // 外部链接
-        {
-          type: 'link',
-          label: 'API Reference', // 链接标签
-          href: 'https://canyon-project.github.io/canyon.io/api-reference', // 外部 URL
-        },],
+      type: 'doc',
+      id:'common_problem'
     },
+    // {
+    //   type: 'category',
+    //   label: 'Reference',
+    //   items: [    // 外部链接
+    //     {
+    //       type: 'link',
+    //       label: 'API Reference', // 链接标签
+    //       href: 'https://canyon-project.github.io/canyon.io/api-reference', // 外部 URL
+    //     },],
+    // },
   ],
 };
