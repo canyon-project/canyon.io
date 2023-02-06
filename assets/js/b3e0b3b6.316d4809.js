@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcanyon_io=self.webpackChunkcanyon_io||[]).push([[34],{5269:a=>{a.exports=JSON.parse('{"allTagsPath":"/canyon.io/blog/tags","slug":"/canyon.io/blog/tags/docusaurus","name":"docusaurus","count":1,"permalink":"/canyon.io/blog/tags/docusaurus"}')}}]);
