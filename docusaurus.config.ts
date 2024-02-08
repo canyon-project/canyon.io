@@ -29,7 +29,18 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  themes:[
+    [
+      // @ts-ignore
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      // @ts-ignore
+      ({
+        hashed: true,
+        language: ["en", "zh"],
+      }),
+    ],
+  ],
   presets: [
     [
       'classic',
