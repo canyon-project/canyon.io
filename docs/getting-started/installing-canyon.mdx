@@ -5,32 +5,39 @@ sidebar_position: 10
 
 ## 先决条件
 
-在您自己的基础设施上安装 Hoppscotch 的先决条件。
+在您自己的基础设施上安装 Canyon 的先决条件。
 
-Hoppscotch 是一个自托管 API 开发平台，打包为一组 Docker 容器。您可以在任何可以运行Docker Engine 的操作系统上安装并运行 Hoppscotch 。
-您可以在本地计算机或您选择的云提供商上使用 Hoppscotch。
+Canyon 是一个JavaScript代码覆盖率解决方案，打包为一组 Docker 容器。您可以在任何可以运行Docker Engine 的操作系统上安装并运行 Canyon 。
+您可以在本地计算机或您选择的云提供商上使用 Canyon。
 
 ### 系统要求
 
-Hoppscotch 设计为在小型和大型部署中都能良好运行。运行 Hoppscotch 的最低要求是操作系统支持 Docker 和 4 个 CPU 核心 + 4GB RAM 来生成构建映像，以及 1 个 CPU 核心 + 2GB RAM 来托管生成的输出文件。
+Canyon 设计为在小型和大型部署中都能良好运行。运行 Canyon 的最低要求是操作系统支持 Docker 和 1 个 CPU 核心 + 2GB RAM 来生成构建映像。
 
 ### 安装 Node.js、npm、pnpm
 
 #### Node.js + npm
 
-安装Node.js(v18+) 和npm(v9+)。
+安装 [`Node.js`](https://nodejs.org/en) (v18+) 和 [`npm`](https://www.npmjs.com) (v9+).
 
-#### Node.js + npm
+- [Node.js + npm 安装手册](https://nodejs.org/en/download)
 
-pnpm i
 
-### 码头工人
+### pnpm
 
-安装Docker（v20+）。
+安装 [`pnpm`](https://pnpm.io) (v6+).
+
+- [pnpm 安装手册](https://pnpm.io/installation)
+
+### Docker
+
+安装 [`Docker`](https://www.docker.com) (v20+).
+
+- [Docker 安装手册](https://docs.docker.com/engine/install)
 
 ### Postgres数据库
 
-Hoppscotch 使用 Postgres 数据库来存储所有数据。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
+Canyon 使用 Postgres 数据库来存储所有数据。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
 
 ```
 postgresql://username:password@url:5432/dbname
@@ -38,11 +45,13 @@ postgresql://username:password@url:5432/dbname
 
 ## 安装和构建
 
-了解如何安装和构建 Hoppscotch 社区版。
+了解如何安装和构建 Canyon 社区版。
 
 ### 配置环境
 
 在开始安装之前，您需要配置环境变量。
+
+.env.example将克隆存储库根目录中找到的文件内容复制到.env环境变量并添加您的值。
 
 确保环境值不包含在引号内。
 
@@ -59,7 +68,7 @@ REFRESH_TOKEN_VALIDITY=604800000
 ACCESS_TOKEN_VALIDITY=86400000
 SESSION_SECRET=anothersecretcode123
 
-# Hoppscotch App Domain Config
+# Canyon App Domain Config
 REDIRECT_URL=http://localhost:3000
 WHITELISTED_ORIGINS=http://localhost:3170,http://localhost:3000,http://localhost:3100
 VITE_ALLOWED_AUTH_PROVIDERS=GOOGLE,GITHUB,MICROSOFT,EMAIL
@@ -104,25 +113,69 @@ VITE_BACKEND_WS_URL=wss://localhost:3170/graphql
 VITE_BACKEND_API_URL=http://localhost:3170/v1
 
 # Terms Of Service And Privacy Policy Links (Optional)
-VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
-VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
+VITE_APP_TOS_LINK=https://docs.Canyon.io/support/terms
+VITE_APP_PRIVACY_POLICY_LINK=https://docs.Canyon.io/support/privacy
 
 ENABLE_SUBPATH_BASED_ACCESS=false
 ```
 
+让我们来了解一下主要的环境变量：
+
+1. `DATABASE_URL`: This is where you add your Postgres database URL.
+2. `TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
+3. `MAGIC_LINK_TOKEN_VALIDITY`:Duration of the validity of the magic link being sent to sign in to Canyon (in days).
+4. `REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
+5. `ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
+6. `JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
+7. `REDIRECT_URL`: This is a fallback URL to debug when the actual redirects fail.
+8. `WHITELISTED_ORIGINS`: URLs of Canyon backend, admin dashboard, and the frontend app.
+9. `VITE_ALLOWED_AUTH_PROVIDERS`: Allows you to specify which auth providers you want to enable.
+10. `MAILER_SMTP_URL`: The SMTP URL for email delivery.
+11. `MAILER_ADDRESS_FROM`: The email address that you would be using.
+12. `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
+13. `RATE_LIMIT_MAX`: The maximum number of requests that Canyon can handle under `RATE_LIMIT_TTL`.
+14. `VITE_BASE_URL`: This is the URL where your deployment will be accessible from.
+15. `VITE_SHORTCODE_BASE_URL`: A URL to generate shortcodes for sharing, can be the same as `VITE_BASE_URL`.
+16. `VITE_BACKEND_GQL_URL`: The URL for GraphQL within the instance.
+17. `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
+18. `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
+19. `VITE_APP_TOS_LINK` and `VITE_APP_PRIVACY_POLICY_LINK` are optional and are used to configure the links to the Terms & Conditions and Privacy Policy.
+
+Third-party auth configs have to be obtained from the respective providers. You can choose and configure the auth providers by following the [configuring OAuth guide](/documentation/self-host/community-edition/prerequisites#oauth).
+
+
 ### Node.js
+
+克隆项目
 
 ```shell
 git clone https://github.com/canyon-project/canyon
 ```
 
+安装依赖项
+
 ```shell
 pnpm install
 ```
 
+修改.env文件，使用nodejs运行项目
 
-### 码头工人
+```shell
+node packages/canyon-backend/dist/main.js
+```
+
+
+
+### Docker
 
 ```shell
 docker run canyon
 ```
+
+## 启动成功
+
+启动成功后会有三个主要的服务：
+
+- Canyon frontend
+- Canyon backend
+- Canyon task
