@@ -1,10 +1,128 @@
 ---
-title: Installation Canyon
+title: 安装 Canyon
 sidebar_position: 10
 ---
 
-## Using Docker
+## 先决条件
 
-All Prometheus services are available as Docker images on Quay.io or Docker Hub.
+在您自己的基础设施上安装 Hoppscotch 的先决条件。
 
-Running Prometheus on Docker is as simple as docker run -p 9090:9090 prom/prometheus. This starts Prometheus with a sample configuration and exposes it on port 9090.
+Hoppscotch 是一个自托管 API 开发平台，打包为一组 Docker 容器。您可以在任何可以运行Docker Engine 的操作系统上安装并运行 Hoppscotch 。
+您可以在本地计算机或您选择的云提供商上使用 Hoppscotch。
+
+### 系统要求
+
+Hoppscotch 设计为在小型和大型部署中都能良好运行。运行 Hoppscotch 的最低要求是操作系统支持 Docker 和 4 个 CPU 核心 + 4GB RAM 来生成构建映像，以及 1 个 CPU 核心 + 2GB RAM 来托管生成的输出文件。
+
+### 安装 Node.js、npm、pnpm
+
+#### Node.js + npm
+
+安装Node.js(v18+) 和npm(v9+)。
+
+#### Node.js + npm
+
+pnpm i
+
+### 码头工人
+
+安装Docker（v20+）。
+
+### Postgres数据库
+
+Hoppscotch 使用 Postgres 数据库来存储所有数据。您可以使用您选择的任何 Postgres 数据库提供商 - 托管在本地或云提供商上。确保您拥有以下格式的有效 Postgres 数据库 URL：
+
+```
+postgresql://username:password@url:5432/dbname
+```
+
+## 安装和构建
+
+了解如何安装和构建 Hoppscotch 社区版。
+
+### 配置环境
+
+在开始安装之前，您需要配置环境变量。
+
+确保环境值不包含在引号内。
+
+```yaml
+#-----------------------Backend Config------------------------------#
+# Prisma Config
+DATABASE_URL=postgresql://username:password@url:5432/dbname # or replace with your database URL
+
+# Auth Tokens Config
+JWT_SECRET=secretcode123
+TOKEN_SALT_COMPLEXITY=10
+MAGIC_LINK_TOKEN_VALIDITY=3
+REFRESH_TOKEN_VALIDITY=604800000
+ACCESS_TOKEN_VALIDITY=86400000
+SESSION_SECRET=anothersecretcode123
+
+# Hoppscotch App Domain Config
+REDIRECT_URL=http://localhost:3000
+WHITELISTED_ORIGINS=http://localhost:3170,http://localhost:3000,http://localhost:3100
+VITE_ALLOWED_AUTH_PROVIDERS=GOOGLE,GITHUB,MICROSOFT,EMAIL
+
+# Google Auth Config
+GOOGLE_CLIENT_ID=*****
+GOOGLE_CLIENT_SECRET=*****
+GOOGLE_CALLBACK_URL=http://localhost:3170/v1/auth/google/callback
+GOOGLE_SCOPE=email,profile
+
+# Github Auth Config
+GITHUB_CLIENT_ID=*****
+GITHUB_CLIENT_SECRET=****
+GITHUB_CALLBACK_URL=http://localhost:3170/v1/auth/github/callback
+GITHUB_SCOPE=user:email
+
+# Microsoft Auth Config
+MICROSOFT_CLIENT_ID=*****
+MICROSOFT_CLIENT_SECRET=*****
+MICROSOFT_CALLBACK_URL=http://localhost:3170/v1/auth/microsoft/callback
+MICROSOFT_SCOPE=user.read
+MICROSOFT_TENANT=common
+
+# Mailer config
+MAILER_SMTP_URL=smtps://user@domain.com:pass@smtp.domain.com
+MAILER_ADDRESS_FROM=from@example.com
+
+# Rate Limit Config
+RATE_LIMIT_TTL=60
+RATE_LIMIT_MAX=100
+
+#-----------------------Frontend Config------------------------------#
+
+# Base URLs
+VITE_BASE_URL=http://localhost:3000
+VITE_SHORTCODE_BASE_URL=http://localhost:3000
+VITE_ADMIN_URL=http://localhost:3100
+
+# Backend URLs
+VITE_BACKEND_GQL_URL=http://localhost:3170/graphql
+VITE_BACKEND_WS_URL=wss://localhost:3170/graphql
+VITE_BACKEND_API_URL=http://localhost:3170/v1
+
+# Terms Of Service And Privacy Policy Links (Optional)
+VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
+VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
+
+ENABLE_SUBPATH_BASED_ACCESS=false
+```
+
+### Node.js
+
+```shell
+git clone https://github.com/canyon-project/canyon
+```
+
+```shell
+pnpm install
+```
+
+
+### 码头工人
+
+```shell
+docker run canyon
+```

@@ -118,6 +118,13 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    announcementBar: {
+      id: 'support_us',
+      content: '<div>如果你喜欢 Canyon，<a href="https://github.com/canyon-project/canyon" target="_blank">在 GitHub 上给我们一颗星</a>！⭐️</div>',
+      backgroundColor: '#fafbfc',
+      textColor: '#091E42',
+      isCloseable: false,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
