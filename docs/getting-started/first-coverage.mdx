@@ -3,8 +3,57 @@ title: 上报第一个覆盖率数据
 sidebar_position: 20
 ---
 
+# 上报第一个覆盖率
+
 ## 代码插桩
 
-前端工程和模块化离不开 babel。如果你说你的项目是的话，只需安装两个 babel 插件就可以快速上手。
-babel-plugin-istanbul 是由 istanbul 维护的官方 babel 插件。
-babel-plugin-canyon 我们是为了方便用户配置项目信息的 babel 插件。
+前端工程化、模块化离不开babel。如果说你的项目是的话，只需要安装两个babel插件即可快速开始，
+[`babel-plugin-istanbul`](https://github.com/istanbuljs/babel-plugin-istanbul) 是istanbul官方维护的babel插件。
+[`babel-plugin-canyon`](https://github.com/canyon-project/babel-plugin-canyon) 我们是为了便于用户配置项目信息的babel插件。
+
+```shell
+npm i babel-plugin-istanbul babel-plugin-canyon -D
+```
+
+在babel中配置
+```json
+{
+  "plugins": [
+    "istanbul",
+    "canyon"
+  ]
+}
+```
+
+:::tip
+babel-plugin-canyon 插件将用户配置的信息存在**window.\_\_canyon\_\_**上。
+:::
+
+下面是[demo](https://github.com/canyon-project/canyon)项目，线上地址：https://github.com/canyon-project/canyon
+
+[//]: # (![Example banner]&#40;./demo1.jpg&#41;)
+[//]: # (![Example banner]&#40;./demo2.jpeg&#41;)
+
+## 构建时配置
+
+在gitlab仓库的ci中[配置构建时环境变量](https://github.com/canyon-project/canyon)
+
+[//]: # (![Example banner]&#40;./ci.png&#41;)
+
+
+## 覆盖率上报
+
+- UI自动化 我们用flytest测试平台合作，在UI自动化中会自动收集覆盖率数据并上报。
+- 手工上报 chrome可以使用chrome插件[canyon-extension](https://chromewebstore.google.com/detail/canyon-extension/omnpafdjidgpdmlimbangcjjaaodbeof?hl=zh-CN&utm_source=ext_sidebar)手工上报覆盖率数据。
+
+## 参数解释
+
+dsn: 覆盖率上报接口，可用 https://canyon.com/coverage/client
+
+reporter: 上报人的身份令牌，请至 [覆盖率平台](https://canyon.com/settings) 查看
+
+projectID: 仓库ID，会自动读取环境变量CI_PROJECT_ID
+
+commitSha: 会自动读取环境变量CI_COMMIT_SHA
+
+coverage: 项目覆盖率对象
