@@ -5,8 +5,6 @@ sidebar_position: 10
 
 ## 先决条件
 
-在您自己的基础设施上安装 Canyon 的先决条件。
-
 Canyon 是一个JavaScript代码覆盖率解决方案，打包为一组 Docker 容器。您可以在任何可以运行Docker Engine 的操作系统上安装并运行 Canyon 。
 您可以在本地计算机或您选择的云提供商上使用 Canyon。
 
@@ -43,6 +41,10 @@ Canyon 使用 Postgres 数据库来存储所有数据。您可以使用您选择
 postgresql://username:password@url:5432/dbname
 ```
 
+#### 创建表
+
+建表sql文件在 [canyon/packages/canyon-backend/prisma/schema.sql](https://github.com/canyon-project/canyon/blob/dev/packages/canyon-backend/prisma/create-table.sql) 中
+
 ## 安装和构建
 
 了解如何安装和构建 Canyon 社区版。
@@ -56,93 +58,29 @@ postgresql://username:password@url:5432/dbname
 确保环境值不包含在引号内。
 
 ```yaml
-#-----------------------Backend Config------------------------------#
 # Prisma Config
-DATABASE_URL=postgresql://username:password@url:5432/dbname # or replace with your database URL
+DATABASE_URL=postgress://canyon:canyon@localhost:5432/canyon
 
-# Auth Tokens Config
-JWT_SECRET=secretcode123
-TOKEN_SALT_COMPLEXITY=10
-MAGIC_LINK_TOKEN_VALIDITY=3
-REFRESH_TOKEN_VALIDITY=604800000
-ACCESS_TOKEN_VALIDITY=86400000
-SESSION_SECRET=anothersecretcode123
+# Gitlab Config
+GITLAB_URL="***"
+GITLAB_CLIENT_ID="***"
+GITLAB_CLIENT_SECRET="***"
+PRIVATE_TOKEN=***
 
-# Canyon App Domain Config
-REDIRECT_URL=http://localhost:3000
-WHITELISTED_ORIGINS=http://localhost:3170,http://localhost:3000,http://localhost:3100
-VITE_ALLOWED_AUTH_PROVIDERS=GOOGLE,GITHUB,MICROSOFT,EMAIL
+REDIRECT_URI=http://localhost:3000/login
 
-# Google Auth Config
-GOOGLE_CLIENT_ID=*****
-GOOGLE_CLIENT_SECRET=*****
-GOOGLE_CALLBACK_URL=http://localhost:3170/v1/auth/google/callback
-GOOGLE_SCOPE=email,profile
-
-# Github Auth Config
-GITHUB_CLIENT_ID=*****
-GITHUB_CLIENT_SECRET=****
-GITHUB_CALLBACK_URL=http://localhost:3170/v1/auth/github/callback
-GITHUB_SCOPE=user:email
-
-# Microsoft Auth Config
-MICROSOFT_CLIENT_ID=*****
-MICROSOFT_CLIENT_SECRET=*****
-MICROSOFT_CALLBACK_URL=http://localhost:3170/v1/auth/microsoft/callback
-MICROSOFT_SCOPE=user.read
-MICROSOFT_TENANT=common
-
-# Mailer config
-MAILER_SMTP_URL=smtps://user@domain.com:pass@smtp.domain.com
-MAILER_ADDRESS_FROM=from@example.com
-
-# Rate Limit Config
-RATE_LIMIT_TTL=60
-RATE_LIMIT_MAX=100
-
-#-----------------------Frontend Config------------------------------#
-
-# Base URLs
-VITE_BASE_URL=http://localhost:3000
-VITE_SHORTCODE_BASE_URL=http://localhost:3000
-VITE_ADMIN_URL=http://localhost:3100
-
-# Backend URLs
-VITE_BACKEND_GQL_URL=http://localhost:3170/graphql
-VITE_BACKEND_WS_URL=wss://localhost:3170/graphql
-VITE_BACKEND_API_URL=http://localhost:3170/v1
-
-# Terms Of Service And Privacy Policy Links (Optional)
-VITE_APP_TOS_LINK=https://docs.Canyon.io/support/terms
-VITE_APP_PRIVACY_POLICY_LINK=https://docs.Canyon.io/support/privacy
-
-ENABLE_SUBPATH_BASED_ACCESS=false
 ```
 
 让我们来了解一下主要的环境变量：
 
-1. `DATABASE_URL`: This is where you add your Postgres database URL.
-2. `TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
-3. `MAGIC_LINK_TOKEN_VALIDITY`:Duration of the validity of the magic link being sent to sign in to Canyon (in days).
-4. `REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
-5. `ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
-6. `JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
-7. `REDIRECT_URL`: This is a fallback URL to debug when the actual redirects fail.
-8. `WHITELISTED_ORIGINS`: URLs of Canyon backend, admin dashboard, and the frontend app.
-9. `VITE_ALLOWED_AUTH_PROVIDERS`: Allows you to specify which auth providers you want to enable.
-10. `MAILER_SMTP_URL`: The SMTP URL for email delivery.
-11. `MAILER_ADDRESS_FROM`: The email address that you would be using.
-12. `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
-13. `RATE_LIMIT_MAX`: The maximum number of requests that Canyon can handle under `RATE_LIMIT_TTL`.
-14. `VITE_BASE_URL`: This is the URL where your deployment will be accessible from.
-15. `VITE_SHORTCODE_BASE_URL`: A URL to generate shortcodes for sharing, can be the same as `VITE_BASE_URL`.
-16. `VITE_BACKEND_GQL_URL`: The URL for GraphQL within the instance.
-17. `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
-18. `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
-19. `VITE_APP_TOS_LINK` and `VITE_APP_PRIVACY_POLICY_LINK` are optional and are used to configure the links to the Terms & Conditions and Privacy Policy.
+1. `DATABASE_URL`: 在此处添加 Postgres 数据库 URL。
+2. `GITLAB_URL`: gitlab的URL。例如：`https://gitlab.com`.
+3. `GITLAB_CLIENT_ID`: 从 Gitlab OAuth 配置中获取的客户端 ID。
+4. `GITLAB_CLIENT_SECRET`: 从 Gitlab OAuth 配置中获取的客户端密钥。
+5. `PRIVATE_TOKEN`: 申请一个私有令牌，以便在 Gitlab 上执行操作。
+6. `REDIRECT_URI`: 重定向 URI 用于 OAuth。
 
-Third-party auth configs have to be obtained from the respective providers. You can choose and configure the auth providers by following the [configuring OAuth guide](/documentation/self-host/community-edition/prerequisites#oauth).
-
+gitlab的配置可以按照[gitlab配置 OAuth 指南](https://docs.gitlab.com/ee/api/oauth2.html)
 
 ### Node.js
 
@@ -152,10 +90,10 @@ Third-party auth configs have to be obtained from the respective providers. You 
 git clone https://github.com/canyon-project/canyon
 ```
 
-安装依赖项
+安装依赖项并构建项目
 
 ```shell
-pnpm install
+pnpm install && pnpm run build
 ```
 
 修改.env文件，使用nodejs运行项目
@@ -165,11 +103,12 @@ node packages/canyon-backend/dist/main.js
 ```
 
 
-
 ### Docker
 
+使用docker运行canyon只需要指定环境变量文件路径和端口号即可
+
 ```shell
-docker run canyon
+docker run -d -p 8080:8080 -v /your/path/.env:/app/.env zhangtao25/canyon:main
 ```
 
 ## 启动成功
@@ -179,3 +118,7 @@ docker run canyon
 - Canyon frontend
 - Canyon backend
 - Canyon task
+
+访问 `http://localhost:8080` 以查看 Canyon 的主页。
+
+<img style={{boxShadow:'0 2px 5px 1px rgba(64,60,67,.16)',borderRadius:'10px',overflow:'hidden'}} src={require('@site/static/docs/getting-stared/app-welcome.jpg').default}/>
